@@ -1,4 +1,4 @@
 {
-  "updateInterval": 300000, // 5 minutes (in milliseconds)
-  "monitors": []  // Leave empty to fetch all monitors
+  "updateInterval": 300000,
+  "monitors": []
 }
