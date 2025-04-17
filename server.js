@@ -5,7 +5,7 @@ dotenv.config();
 
 const app = express();
 
-// Make sure the app responds to HTTP requests to keep Render from idling
+// Respond to HTTP requests to keep the app alive
 app.get('/', (req, res) => {
   res.send('Bot is running!');
 });
