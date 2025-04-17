@@ -1,10 +1,14 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import axios from 'axios';
 import dotenv from 'dotenv';
-import fs from 'fs-extra';
+import fs from 'fs';
+import path from 'path';
 import './server.js'; // Import the server to keep the app alive
 
 dotenv.config();
+
+// Reading config.json using fs
+const config = JSON.parse(fs.readFileSync(path.resolve('./config.json'), 'utf-8'));
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -66,7 +70,7 @@ async function updateStatusMessage() {
 client.once('ready', async () => {
   console.log(`✅ Logged in as ${client.user.tag}`);
   await updateStatusMessage();
-  setInterval(updateStatusMessage, parseInt(import('./config.json').then(m => m.default.updateInterval)));
+  setInterval(updateStatusMessage, parseInt(config.updateInterval));
 });
 
 client.login(process.env.DISCORD_TOKEN);
